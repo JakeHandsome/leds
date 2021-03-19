@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import express from 'express'
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [data, setData] = useState<string>("data");
+  const callBackEnd = async () => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((d) => setData(data + "\n" + JSON.stringify(d, null, 2)));
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      I want to die <button onClick={callBackEnd}>I am a dumb button</button>
+      <p>{data}</p>
     </div>
   );
 }

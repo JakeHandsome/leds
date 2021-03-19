@@ -16,10 +16,10 @@ const express_1 = __importDefault(require("express"));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.get("/api", (_, res) => {
-        res.send("hello");
+        res.json({ poop: ":)" });
     });
-    app.listen(3000, () => {
-        console.log("server.started on localhost:4000");
+    app.listen(8000, () => {
+        console.log("server.started on localhost:8000");
     });
 });
 main().catch((err) => {
