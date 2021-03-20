@@ -35,7 +35,7 @@ const main = async () => {
       console.log(data.color);
       const color = colorToInts(data.color);
       exec(
-         `python3 ../pytest/test.py ${color.Red} ${color.Blue} ${color.Green}`
+         `python3 ../pytest/test.py ${color.Red} ${color.Green} ${color.Blue}`
       ).then(() => {
          res.json({ success: true });
       });
