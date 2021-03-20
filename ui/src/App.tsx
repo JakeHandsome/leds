@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SketchPicker } from "react-color";
 
 function App() {
    const [data, setData] = useState<string>("data");
@@ -10,8 +11,8 @@ function App() {
    };
    const handleChange = (event: any) => {
       console.log({ event });
-      console.log(event.target.value);
-      setColor(event.target.value);
+      setColor(event.hex);
+      //setColor(event.target.value);
    };
 
    const submit = () => {
@@ -30,7 +31,7 @@ function App() {
          <button onClick={callBackEnd}>I am a dumb button</button>
          <p>{data}</p>
          <label>Color</label>
-         <input type="color" value={color} onChange={handleChange} />
+         <SketchPicker color={color} onChangeComplete={handleChange} />
          <button onClick={submit}>Change color</button>
       </div>
    );
