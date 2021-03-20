@@ -34,11 +34,16 @@ const main = async () => {
       const data: changecolor = req.body;
       console.log(data.color);
       const color = colorToInts(data.color);
+
       exec(
          `python3 ../pytest/test.py ${color.Red} ${color.Blue} ${color.Green}`
-      ).then(() => {
-         res.json({ success: true });
-      });
+      )
+         .then(() => {
+            res.statusCode = 200;
+         })
+         .catch(() => {
+            res.statusCode = 500;
+         });
    });
 };
 
