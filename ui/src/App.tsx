@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { SketchPicker } from "react-color";
+import {
+   ChromePicker,
+   ColorResult,
+   HuePicker,
+   SketchPicker,
+} from "react-color";
 
 function App() {
    const [data, setData] = useState<string>("data");
-   const [color, setColor] = useState<string>("#FFFFFF");
+   const [color, setColor] = useState<ColorResult>();
    const callBackEnd = async () => {
       fetch("/api")
          .then((res) => res.json())
@@ -11,7 +16,7 @@ function App() {
    };
    const handleChange = (event: any) => {
       console.log({ event });
-      setColor(event.hex);
+      setColor(event);
       //setColor(event.target.value);
    };
 
@@ -19,7 +24,7 @@ function App() {
       const requestOptions: RequestInit = {
          method: "POST",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({ color: color }),
+         body: JSON.stringify({ color: color?.rgb }),
       };
       fetch("/api/changecolor", requestOptions)
          .then((response) => response.json())
@@ -31,7 +36,10 @@ function App() {
          <button onClick={callBackEnd}>I am a dumb button</button>
          <p>{data}</p>
          <label>Color</label>
-         <SketchPicker color={color} onChangeComplete={handleChange} />
+         <SketchPicker color={color?.hex} onChange={handleChange} />
+         <p>
+            R: {color?.rgb.r} G: {color?.rgb.g} B: {color?.rgb.b}
+         </p>
          <button onClick={submit}>Change color</button>
       </div>
    );
