@@ -11,6 +11,9 @@ function App() {
       <div className="App">
          I want to die <button onClick={callBackEnd}>I am a dumb button</button>
          <p>{data}</p>
+         <form>
+            <label> Red </label>
+         </form>
       </div>
    );
 }
