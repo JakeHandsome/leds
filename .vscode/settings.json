@@ -1,5 +1,7 @@
 {
    "files.exclude": {
       "**/node_modules": false
-   }
+   },
+   "editor.formatOnSave": true,
+   "editor.formatOnType": true
 }
