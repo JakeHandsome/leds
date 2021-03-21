@@ -15,10 +15,16 @@ using Microsoft.Extensions.Hosting;
 using System.IO;
 using Google.Protobuf;
 using static NETServer.Protobuf.Color;
+using IoT;
 namespace NETserver
 {
    public class Startup
    {
+      private static LEDDriver LEDDriver;
+      static Startup()
+      {
+         LEDDriver = new LEDDriver(150);
+      }
       // This method gets called by the runtime. Use this method to add services to the container.
       // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
       public void ConfigureServices(IServiceCollection services)
@@ -49,8 +55,9 @@ namespace NETserver
             {
                MemoryStream ms = new MemoryStream();
                {
-                  var a = await context.Request.BodyReader.ReadAsync();
-                  NETServer.Protobuf.Color b = NETServer.Protobuf.Color.Parser.ParseFrom(a.Buffer);
+                  var buffer = await context.Request.BodyReader.ReadAsync();
+                  NETServer.Protobuf.Color color = NETServer.Protobuf.Color.Parser.ParseFrom(buffer.Buffer);
+                  LEDDriver.SetAllLights(Color.FromArgb(red: color.R, blue: color.B, green: color.G));
                }
             });
          });
