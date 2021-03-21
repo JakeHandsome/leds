@@ -24,13 +24,13 @@ namespace NETServer.Protobuf {
     static ColorReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgtDb2xvci5wcm90bxIDbGVkIj4KBUNvbG9yEgkKAXIYASABKAUSCQoBYhgC",
-            "IAEoBRIJCgFnGAMgASgFEg4KAWEYBCABKAVIAIgBAUIECgJfYUIVqgISTkVU",
-            "U2VydmVyLlByb3RvYnVmYgZwcm90bzM="));
+            "CgtDb2xvci5wcm90bxIDbGVkIigKBUNvbG9yEgkKAXIYASABKAUSCQoBZxgC",
+            "IAEoBRIJCgFiGAMgASgFQhWqAhJORVRTZXJ2ZXIuUHJvdG9idWZiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::NETServer.Protobuf.Color), global::NETServer.Protobuf.Color.Parser, new[]{ "R", "B", "G", "A" }, new[]{ "A" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::NETServer.Protobuf.Color), global::NETServer.Protobuf.Color.Parser, new[]{ "R", "G", "B" }, null, null, null, null)
           }));
     }
     #endregion
@@ -44,7 +44,6 @@ namespace NETServer.Protobuf {
   {
     private static readonly pb::MessageParser<Color> _parser = new pb::MessageParser<Color>(() => new Color());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Color> Parser { get { return _parser; } }
 
@@ -67,11 +66,9 @@ namespace NETServer.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Color(Color other) : this() {
-      _hasBits0 = other._hasBits0;
       r_ = other.r_;
-      b_ = other.b_;
       g_ = other.g_;
-      a_ = other.a_;
+      b_ = other.b_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -91,19 +88,8 @@ namespace NETServer.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "b" field.</summary>
-    public const int BFieldNumber = 2;
-    private int b_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int B {
-      get { return b_; }
-      set {
-        b_ = value;
-      }
-    }
-
     /// <summary>Field number for the "g" field.</summary>
-    public const int GFieldNumber = 3;
+    public const int GFieldNumber = 2;
     private int g_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int G {
@@ -113,26 +99,15 @@ namespace NETServer.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "a" field.</summary>
-    public const int AFieldNumber = 4;
-    private int a_;
+    /// <summary>Field number for the "b" field.</summary>
+    public const int BFieldNumber = 3;
+    private int b_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int A {
-      get { if ((_hasBits0 & 1) != 0) { return a_; } else { return 0; } }
+    public int B {
+      get { return b_; }
       set {
-        _hasBits0 |= 1;
-        a_ = value;
+        b_ = value;
       }
-    }
-    /// <summary>Gets whether the "a" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool HasA {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "a" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void ClearA() {
-      _hasBits0 &= ~1;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -149,9 +124,8 @@ namespace NETServer.Protobuf {
         return true;
       }
       if (R != other.R) return false;
-      if (B != other.B) return false;
       if (G != other.G) return false;
-      if (A != other.A) return false;
+      if (B != other.B) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -159,9 +133,8 @@ namespace NETServer.Protobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (R != 0) hash ^= R.GetHashCode();
-      if (B != 0) hash ^= B.GetHashCode();
       if (G != 0) hash ^= G.GetHashCode();
-      if (HasA) hash ^= A.GetHashCode();
+      if (B != 0) hash ^= B.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -182,17 +155,13 @@ namespace NETServer.Protobuf {
         output.WriteRawTag(8);
         output.WriteInt32(R);
       }
-      if (B != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(B);
-      }
       if (G != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteInt32(G);
       }
-      if (HasA) {
-        output.WriteRawTag(32);
-        output.WriteInt32(A);
+      if (B != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(B);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -207,17 +176,13 @@ namespace NETServer.Protobuf {
         output.WriteRawTag(8);
         output.WriteInt32(R);
       }
-      if (B != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(B);
-      }
       if (G != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteInt32(G);
       }
-      if (HasA) {
-        output.WriteRawTag(32);
-        output.WriteInt32(A);
+      if (B != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(B);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -231,14 +196,11 @@ namespace NETServer.Protobuf {
       if (R != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(R);
       }
-      if (B != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(B);
-      }
       if (G != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(G);
       }
-      if (HasA) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(A);
+      if (B != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(B);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -254,14 +216,11 @@ namespace NETServer.Protobuf {
       if (other.R != 0) {
         R = other.R;
       }
-      if (other.B != 0) {
-        B = other.B;
-      }
       if (other.G != 0) {
         G = other.G;
       }
-      if (other.HasA) {
-        A = other.A;
+      if (other.B != 0) {
+        B = other.B;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -282,15 +241,11 @@ namespace NETServer.Protobuf {
             break;
           }
           case 16: {
-            B = input.ReadInt32();
-            break;
-          }
-          case 24: {
             G = input.ReadInt32();
             break;
           }
-          case 32: {
-            A = input.ReadInt32();
+          case 24: {
+            B = input.ReadInt32();
             break;
           }
         }
@@ -312,15 +267,11 @@ namespace NETServer.Protobuf {
             break;
           }
           case 16: {
-            B = input.ReadInt32();
-            break;
-          }
-          case 24: {
             G = input.ReadInt32();
             break;
           }
-          case 32: {
-            A = input.ReadInt32();
+          case 24: {
+            B = input.ReadInt32();
             break;
           }
         }

@@ -5,26 +5,22 @@ export const protobufPackage = "led";
 
 export interface Color {
   r: number;
-  b: number;
   g: number;
-  a?: number | undefined;
+  b: number;
 }
 
-const baseColor: object = { r: 0, b: 0, g: 0 };
+const baseColor: object = { r: 0, g: 0, b: 0 };
 
 export const Color = {
   encode(message: Color, writer: Writer = Writer.create()): Writer {
     if (message.r !== 0) {
       writer.uint32(8).int32(message.r);
     }
-    if (message.b !== 0) {
-      writer.uint32(16).int32(message.b);
-    }
     if (message.g !== 0) {
-      writer.uint32(24).int32(message.g);
+      writer.uint32(16).int32(message.g);
     }
-    if (message.a !== undefined) {
-      writer.uint32(32).int32(message.a);
+    if (message.b !== 0) {
+      writer.uint32(24).int32(message.b);
     }
     return writer;
   },
@@ -40,13 +36,10 @@ export const Color = {
           message.r = reader.int32();
           break;
         case 2:
-          message.b = reader.int32();
-          break;
-        case 3:
           message.g = reader.int32();
           break;
-        case 4:
-          message.a = reader.int32();
+        case 3:
+          message.b = reader.int32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -63,20 +56,15 @@ export const Color = {
     } else {
       message.r = 0;
     }
-    if (object.b !== undefined && object.b !== null) {
-      message.b = Number(object.b);
-    } else {
-      message.b = 0;
-    }
     if (object.g !== undefined && object.g !== null) {
       message.g = Number(object.g);
     } else {
       message.g = 0;
     }
-    if (object.a !== undefined && object.a !== null) {
-      message.a = Number(object.a);
+    if (object.b !== undefined && object.b !== null) {
+      message.b = Number(object.b);
     } else {
-      message.a = undefined;
+      message.b = 0;
     }
     return message;
   },
@@ -84,9 +72,8 @@ export const Color = {
   toJSON(message: Color): unknown {
     const obj: any = {};
     message.r !== undefined && (obj.r = message.r);
-    message.b !== undefined && (obj.b = message.b);
     message.g !== undefined && (obj.g = message.g);
-    message.a !== undefined && (obj.a = message.a);
+    message.b !== undefined && (obj.b = message.b);
     return obj;
   },
 
@@ -97,20 +84,15 @@ export const Color = {
     } else {
       message.r = 0;
     }
-    if (object.b !== undefined && object.b !== null) {
-      message.b = object.b;
-    } else {
-      message.b = 0;
-    }
     if (object.g !== undefined && object.g !== null) {
       message.g = object.g;
     } else {
       message.g = 0;
     }
-    if (object.a !== undefined && object.a !== null) {
-      message.a = object.a;
+    if (object.b !== undefined && object.b !== null) {
+      message.b = object.b;
     } else {
-      message.a = undefined;
+      message.b = 0;
     }
     return message;
   },

@@ -1,6 +1,7 @@
 {
    "files.exclude": {
-      "**/node_modules": false
+      "**/node_modules": true,
+      "**/obj":true
    },
    "editor.formatOnSave": true,
    "editor.formatOnType": true
