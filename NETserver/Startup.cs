@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Reflection;
 using System.Diagnostics;
 using System.Diagnostics.SymbolStore;
 using System;
@@ -11,17 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.IO;
-
+using Google.Protobuf;
+using static NETServer.Protobuf.Color;
 namespace NETserver
 {
-   public class Color
-   {
-      public int r;
-      public int g;
-      public int b;
-      public int? a;
-   }
-
    public class Startup
    {
       // This method gets called by the runtime. Use this method to add services to the container.
@@ -52,7 +47,11 @@ namespace NETserver
             });
             endpoints.MapPost("/api/changecolor", async context =>
             {
-               // TODO protobuffer
+               MemoryStream ms = new MemoryStream();
+               {
+                  var a = await context.Request.BodyReader.ReadAsync();
+                  NETServer.Protobuf.Color b = NETServer.Protobuf.Color.Parser.ParseFrom(a.Buffer);
+               }
             });
          });
       }

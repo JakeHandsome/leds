@@ -1,0 +1,16 @@
+{
+   "name": "protobuf",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "protoc --csharp_out=../NETserver/protobuf/ --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=../ui/src/protobuf/  ./Color.proto  "
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "devDependencies": {
+      "ts-proto": "^1.74.0"
+   }
+}

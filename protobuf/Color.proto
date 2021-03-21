@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package led;
+
+option csharp_namespace = "NETServer.Protobuf";
+
+message Color {
+   int32 r = 1;
+   int32 b = 2;
+   int32 g = 3;
+   optional int32 a = 4;
+
+}

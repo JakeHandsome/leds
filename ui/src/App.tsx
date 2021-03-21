@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import {
-   ChromePicker,
-   ColorResult,
-   HuePicker,
-   SketchPicker,
-} from "react-color";
-
+import { ColorResult, SketchPicker } from "react-color";
+import { Color } from "./protobuf/Color";
 function App() {
    const [data, setData] = useState<string>("data");
    const [color, setColor] = useState<ColorResult>();
@@ -21,10 +16,15 @@ function App() {
    };
 
    const submit = () => {
+      const colorToSend: Color = {
+         r: color?.rgb?.r ?? 0,
+         g: color?.rgb?.g ?? 0,
+         b: color?.rgb?.b ?? 0,
+      };
       const requestOptions: RequestInit = {
          method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(color?.rgb),
+         headers: { "Content-Type": "application/protobuf" },
+         body: Color.encode(colorToSend).finish(),
       };
       fetch("/api/changecolor", requestOptions)
          .then((response) => response.json())
