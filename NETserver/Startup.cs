@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.SymbolStore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,14 @@ using System.IO;
 
 namespace NETserver
 {
+   public class Color
+   {
+      public int r;
+      public int g;
+      public int b;
+      public int? a;
+   }
+
    public class Startup
    {
       // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,7 +47,12 @@ namespace NETserver
          {
             endpoints.MapGet("/api", async context =>
             {
+               Debug.WriteLine("Got api2");
                await context.Response.WriteAsync(@"{""poop"":"":)""}");
+            });
+            endpoints.MapPost("/api/changecolor", async context =>
+            {
+               // TODO protobuffer
             });
          });
       }

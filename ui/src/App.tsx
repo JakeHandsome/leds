@@ -24,7 +24,7 @@ function App() {
       const requestOptions: RequestInit = {
          method: "POST",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({ color: color?.rgb }),
+         body: JSON.stringify(color?.rgb),
       };
       fetch("/api/changecolor", requestOptions)
          .then((response) => response.json())
