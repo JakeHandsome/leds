@@ -1,12 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+   <PropertyGroup>
+      <TargetFramework>net5.0</TargetFramework>
+      <RuntimeIdentifier Condition="'$(Configuration)'=='Release'">linux-arm</RuntimeIdentifier>
+      <RuntimeIdentifier Condition="'$(Configuration)'=='Debug'">win-x86</RuntimeIdentifier>
+      <DefineConstants Condition="'$(Configuration)'=='Release'">LINUX_ARM;NET5_0</DefineConstants>
+      <DefineConstants Condition="'$(Configuration)'=='Debug'">DEBUG;NET5_0</DefineConstants>
+   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Iot.Device.Bindings" Version="1.5.0-prerelease.21168.2" />
-    <PackageReference Include="System.Device.Gpio" Version="1.5.0-prerelease.21168.2" />
-  </ItemGroup>
+   <ItemGroup>
+      <PackageReference Condition="'$(Configuration)'=='Release'" Include="Iot.Device.Bindings" Version="1.5.0-prerelease.21168.2" />
+      <PackageReference Condition="'$(Configuration)'=='Release'" Include="System.Device.Gpio" Version="1.5.0-prerelease.21168.2" />
+   </ItemGroup>
 
 </Project>

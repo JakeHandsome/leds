@@ -5,7 +5,8 @@
   },
   "compilationOptions": {
     "defines": [
-      "TRACE",
+      "LINUX_ARM",
+      "NET5_0",
       "RELEASE",
       "NET",
       "NET5_0",
