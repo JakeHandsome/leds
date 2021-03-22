@@ -10,8 +10,8 @@ function App() {
          .then((d) => setData(data + JSON.stringify(d, null, 2)));
    };
    const handleChange = (event: any) => {
-      console.log({ event });
       setColor(event);
+      submit();
       //setColor(event.target.value);
    };
 
