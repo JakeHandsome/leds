@@ -58,6 +58,7 @@ namespace NETserver
                   var buffer = await context.Request.BodyReader.ReadAsync();
                   NETServer.Protobuf.Color color = NETServer.Protobuf.Color.Parser.ParseFrom(buffer.Buffer);
                   LEDDriver.SetAllLights(Color.FromArgb(red: color.R, blue: color.B, green: color.G));
+                  context.Request.BodyReader.AdvanceTo(buffer.Buffer.Start, buffer.Buffer.End);
                }
             });
          });
