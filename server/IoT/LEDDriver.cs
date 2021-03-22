@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Data;
+using System.Threading;
 using System;
 #if LINUX_ARM
 using System.Device.Spi;
@@ -31,6 +32,7 @@ namespace IoT
       }
       public void SetAllLights(Color color)
       {
+         Console.WriteLine($"Setting All lights to {color.ToString()}");
 #if LINUX_ARM
          var image = lights.Image;
          for (var i = 0; i < Count; i++)
