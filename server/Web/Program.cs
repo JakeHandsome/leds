@@ -22,7 +22,7 @@ namespace NETserver
             .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   webBuilder.UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", "ui", "build"))
+                   webBuilder.UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "client", "build"))
                    .UseStartup<Startup>();
                 });
    }
