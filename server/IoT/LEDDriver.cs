@@ -15,6 +15,7 @@ namespace IoT
       private Ws28xx lights;
       private SpiDevice spi;
 #endif
+      public Color CurrentColor { private set; get; }
       public int Count { private set; get; }
       public LEDDriver(int count)
       {
@@ -29,10 +30,13 @@ namespace IoT
          spi = SpiDevice.Create(settings);
          lights = new Ws2812b(spi, Count);
 #endif
+         CurrentColor = Color.Black;
       }
       public void SetAllLights(Color color)
       {
          Console.WriteLine($"Setting All lights to {color.ToString()}");
+         CurrentColor = color;
+         Console.WriteLine($"Current color is {CurrentColor.ToString()}");
 #if LINUX_ARM
          var image = lights.Image;
          for (var i = 0; i < Count; i++)

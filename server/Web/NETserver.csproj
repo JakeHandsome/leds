@@ -3,7 +3,6 @@
    <PropertyGroup>
       <TargetFramework>net5.0</TargetFramework>
       <RuntimeIdentifier Condition="'$(Configuration)'=='Release'">linux-arm</RuntimeIdentifier>
-      <RuntimeIdentifier Condition="'$(Configuration)'=='Debug'">win-x86</RuntimeIdentifier>
       <DefineConstants Condition="'$(Configuration)'=='Release'">LINUX_ARM;NET5_0</DefineConstants>
       <DefineConstants Condition="'$(Configuration)'=='Debug'">DEBUG;NET5_0</DefineConstants>
    </PropertyGroup>

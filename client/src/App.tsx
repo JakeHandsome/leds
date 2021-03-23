@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import { ColorResult, SketchPicker } from "react-color";
+import { ColorResult, HuePicker, SketchPicker } from "react-color";
 import { Color } from "./protobuf/Color";
 function App() {
-   const [data, setData] = useState<string>("data");
    const [color, setColor] = useState<ColorResult>();
-   const callBackEnd = async () => {
-      fetch("/api")
-         .then((res) => res.json())
-         .then((d) => setData(data + JSON.stringify(d, null, 2)));
-   };
+   const [curColor, setCurColor] = useState<Color>();
    const handleChange = (event: any) => {
       setColor(event);
       submit();
-      //setColor(event.target.value);
    };
 
    const submit = () => {
@@ -26,21 +20,28 @@ function App() {
          headers: { "Content-Type": "application/protobuf" },
          body: Color.encode(colorToSend).finish(),
       };
-      fetch("/api/changecolor", requestOptions)
+      fetch("/api/changecolor/", requestOptions)
          .then((response) => response.json())
          .then((data) => console.log(data));
    };
+
+   const poll = () => {
+      fetch("/api/currentcolor/")
+         .then((r) => r.arrayBuffer())
+         .then((data) => setCurColor(Color.decode(Buffer.from(data))));
+   };
    return (
       <div className="App">
-         I want to die
-         <button onClick={callBackEnd}>I am a dumb button</button>
-         <p>{data}</p>
          <label>Color</label>
-         <SketchPicker color={color?.hex} onChange={handleChange} />
+         <HuePicker color={color?.hex} onChange={handleChange} />
          <p>
-            R: {color?.rgb.r} G: {color?.rgb.g} B: {color?.rgb.b}
+            r: {color?.rgb.r} g: {color?.rgb.g} b: {color?.rgb.b}
          </p>
          <button onClick={submit}>Change color</button>
+         <button onClick={poll}>Get current Color</button>
+         <p>
+            r: {curColor?.r} g: {curColor?.g} b: {curColor?.b}
+         </p>
       </div>
    );
 }
