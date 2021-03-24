@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import { ColorResult, HuePicker, SketchPicker } from "react-color";
+import { ColorResult } from "react-color";
+import LED from "./components/Colorbox";
 import { Color } from "./protobuf/Color";
 function App() {
-   const [color, setColor] = useState<ColorResult>();
-   const [curColor, setCurColor] = useState<Color>();
-   const handleChange = (event: any) => {
-      setColor(event);
+   const [color, setColor] = useState<Color>({ r: 0, g: 0, b: 0 });
+   const [curColor, setCurColor] = useState<Color>({ r: 0, g: 0, b: 0 });
+   const handleChange = (event: ColorResult) => {
+      setColor(event.rgb);
       submit();
    };
 
    const submit = () => {
-      const colorToSend: Color = {
-         r: color?.rgb?.r ?? 0,
-         g: color?.rgb?.g ?? 0,
-         b: color?.rgb?.b ?? 0,
-      };
       const requestOptions: RequestInit = {
          method: "POST",
          headers: { "Content-Type": "application/protobuf" },
-         body: Color.encode(colorToSend).finish(),
+         body: Color.encode(color).finish(),
       };
-      fetch("/api/changecolor/", requestOptions)
-         .then((response) => response.json())
-         .then((data) => console.log(data));
+      fetch("/api/changecolor/", requestOptions);
    };
 
    const poll = () => {
@@ -32,16 +26,11 @@ function App() {
    };
    return (
       <div className="App">
-         <label>Color</label>
-         <HuePicker color={color?.hex} onChange={handleChange} />
-         <p>
-            r: {color?.rgb.r} g: {color?.rgb.g} b: {color?.rgb.b}
-         </p>
+         <label>LED</label>
+         <LED color={color} setColor={setColor} onChange={handleChange} />
          <button onClick={submit}>Change color</button>
          <button onClick={poll}>Get current Color</button>
-         <p>
-            r: {curColor?.r} g: {curColor?.g} b: {curColor?.b}
-         </p>
+         <LED color={curColor} />
       </div>
    );
 }
