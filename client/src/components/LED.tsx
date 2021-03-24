@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from "react";
 import { ColorResult, SketchPicker } from "react-color";
 import { Color } from "../protobuf/Color";
-import "./Colorbox.css";
+import "./LED.css";
 
 function LED({
    color,
@@ -29,17 +29,6 @@ function LED({
    const style: CSSProperties = {
       backgroundColor: rgbToHex(color),
    };
-   const popover: CSSProperties = {
-      position: "absolute",
-      zIndex: 2,
-   };
-   const cover: CSSProperties = {
-      position: "fixed",
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px",
-   };
 
    const handleClick = () => {
       setColor && setShowPicker(!showPicker);
@@ -55,8 +44,8 @@ function LED({
       <div>
          <div className="dot" style={style} onClick={handleClick} />
          {showPicker ? (
-            <div style={popover}>
-               <div style={cover} onClick={handleClose} />
+            <div className="popover">
+               <div className="cover" onClick={handleClose} />
                <SketchPicker color={color} onChange={handleChange} />
             </div>
          ) : null}

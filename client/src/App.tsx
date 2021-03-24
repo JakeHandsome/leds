@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ColorResult } from "react-color";
-import LED from "./components/Colorbox";
+import LED from "./components/LED";
 import { Color } from "./protobuf/Color";
 function App() {
    const [color, setColor] = useState<Color>({ r: 0, g: 0, b: 0 });
@@ -28,11 +28,11 @@ function App() {
       <div className="App">
          <label>LED</label>
          <LED color={color} setColor={setColor} onChange={handleChange} />
-         <button onClick={submit}>Change color</button>
          <button onClick={poll}>Get current Color</button>
          <LED color={curColor} />
       </div>
    );
+   //<button onClick={submit}>Change color</button>;
 }
 
 export default App;

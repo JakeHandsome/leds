@@ -1,0 +1,20 @@
+.dot {
+   height: 35px;
+   width: 35px;
+   border-radius: 50%;
+   display: inline-block;
+   border: 3px solid black;
+}
+
+.popover {
+   position: absolute;
+   z-index: 2;
+}
+
+.cover {
+   position: fixed;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   left: 0px;
+}
