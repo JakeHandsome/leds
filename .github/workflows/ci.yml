@@ -33,6 +33,6 @@ jobs:
         with:
           node-version: "14"
       - name: install
-        run: npm ci
+        run: npx pnpm i
       - name: Build
-        run: npm run build
+        run: pnpm build
