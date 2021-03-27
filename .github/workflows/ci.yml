@@ -24,8 +24,8 @@ jobs:
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
-          name: server
-          path: server/Web/bin/
+          name: led
+          path: server\Web\bin\Release\net5.0\linux-arm\publish
   client:
     defaults:
       run:
@@ -45,5 +45,5 @@ jobs:
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
-          name: client
+          name: led
           path: client/build/

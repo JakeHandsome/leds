@@ -5,8 +5,8 @@
       <RuntimeIdentifier Condition="'$(Configuration)'=='Release'" >linux-arm</RuntimeIdentifier>
       <DefineConstants Condition="'$(Configuration)'=='Release'" >LINUX_ARM;NET5_0</DefineConstants>
       <DefineConstants Condition="'$(Configuration)'=='Debug'" >DEBUG;NET5_0</DefineConstants>
-      <PublishSingleFile Condition="'$(Configuration)'=='Debug'" >true</PublishSingleFile>
-      <PublishTrimmed Condition="'$(Configuration)'=='Debug'" >true</PublishTrimmed>
+      <PublishSingleFile Condition="'$(Configuration)'=='Release'" >true</PublishSingleFile>
+      <PublishTrimmed Condition="'$(Configuration)'=='Release'" >true</PublishTrimmed>
    </PropertyGroup>
 
    <ItemGroup>
