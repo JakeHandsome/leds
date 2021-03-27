@@ -20,8 +20,7 @@ jobs:
           dotnet-version: 5.0.x
       - name: Build
         run: |
-          dotnet build -c Release
-          ls -R
+          dotnet publish -c Release
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
@@ -43,7 +42,6 @@ jobs:
       - name: Build
         run: |
           npm run build
-          ls -R
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
