@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: led
-          path: server\Web\bin\Release\net5.0\linux-arm\publish
+          path: server/Web/bin/Release/net5.0/linux-arm/publish
   client:
     defaults:
       run:
