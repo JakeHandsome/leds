@@ -12,7 +12,6 @@ jobs:
       run:
         working-directory: server/Web
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
@@ -21,6 +20,11 @@ jobs:
           dotnet-version: 5.0.x
       - name: Build
         run: dotnet build -c Release
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: server
+          path: bin/
   client:
     defaults:
       run:
@@ -36,3 +40,8 @@ jobs:
         run: npx pnpm i
       - name: Build
         run: npm run build
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: client
+          path: build/
