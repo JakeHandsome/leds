@@ -19,12 +19,14 @@ jobs:
         with:
           dotnet-version: 5.0.x
       - name: Build
-        run: dotnet build -c Release
+        run: |
+          dotnet build -c Release
+          ls -R
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
           name: server
-          path: bin/
+          path: server/Web/bin/
   client:
     defaults:
       run:
@@ -39,9 +41,11 @@ jobs:
       - name: install
         run: npx pnpm i
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          ls -R
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
           name: client
-          path: build/
+          path: client/build/
