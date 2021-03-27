@@ -1,0 +1,38 @@
+name: Build
+
+on:
+   push:
+      branches: [master]
+   pull_request:
+      branches: [master]
+
+jobs:
+   server:
+      defaults:
+         run:
+            working-directory: server/Web
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@v2
+         - name: Setup .NET
+           uses: actions/setup-dotnet@v1
+           with:
+              dotnet-version: 5.0.x
+         - name: Build
+           run: dotnet build -c Release
+   client:
+      defaults:
+         run:
+            working-directory: client
+      runs-on: ubuntu-latest
+      steps:
+         - uses: action/checkout@v2
+         - name: Setup Node
+         - uses: actions/setup-node@v2
+            with:
+               node-version: "14"
+            - name: install
+            run: npm ci
+            - name: Build
+            run: npm run build
