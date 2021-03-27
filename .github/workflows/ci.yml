@@ -35,4 +35,4 @@ jobs:
       - name: install
         run: npx pnpm i
       - name: Build
-        run: pnpm build
+        run: npm run build
