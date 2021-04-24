@@ -35,12 +35,3 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-
-# Commit artifacts to put on the pi
-!bin/
-bin/*
-!bin/Release/
-bin/Release/*
-!bin/Release/net5.0/
-bin/Release/net5.0/*
-!bin/Release/net5.0/linux-arm
