@@ -11,6 +11,6 @@
    } NvmStructure_T;
 
    NvmStructure_T *GetNvmStruct();
-   void Nvm_ReadAll(class Screen &s);
-   void Nvm_WriteAll(class Screen &s);
+   void Nvm_ReadAll();
+   void Nvm_WriteAll();
 #endif
