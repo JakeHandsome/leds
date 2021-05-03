@@ -1,17 +1,64 @@
 {
-	"folders": [
-		{
-			"path": "client"
-		},
-		{
-			"path": "ESP32"
-		},
-		{
-			"path": "protobuf"
-		},
-		{
-			"path": "server"
-		}
-	],
-	"settings": {}
+   "folders": [
+      {
+         "path": "client"
+      },
+      {
+         "path": "ESP32"
+      },
+      {
+         "path": "protobuf"
+      },
+      {
+         "path": "server"
+      }
+   ],
+   "settings": {},
+   "tasks": {
+      "version": "2.0.0",
+      "tasks": [
+         {
+            "label": "Install All",
+            "type": "shell",
+            "command": "npm ci --workspaces"
+         },
+         {
+            "label": "Build Protobuf",
+            "type": "shell",
+            "command": "npm run build",
+            "options": { "cwd": "protobuf" },
+            "dependsOn": ["Install All"]
+         },
+         {
+            "label": "Build Client",
+            "type": "shell",
+            "command": "npm run build",
+            "options": { "cwd": "client" },
+            "problemMatcher": ["$tsc"],
+            "dependsOn": ["Build Protobuf"]
+         },
+         {
+            "label": "Build Server",
+            "type": "shell",
+            "command": "npm run build",
+            "options": { "cwd": "server" },
+            "problemMatcher": "$tsc",
+            "dependsOn": ["Build Protobuf"]
+         },
+         {
+            "label": "Build ESP32",
+            "type": "shell",
+            "command": "echo TODO",
+            "options": { "cwd": "ESP32" },
+            "dependsOn": ["Build Protobuf"]
+         },
+         {
+            "label": "Build All",
+            "type": "shell",
+            "command": "echo Hello",
+            "dependsOrder": "parallel",
+            "dependsOn": ["Build Client", "Build Server", "Build ESP32"]
+         }
+      ]
+   }
 }
