@@ -1,22 +1,24 @@
 {
    "folders": [
       {
-         "path": "client"
+         "path": "protobuf"
       },
       {
          "path": "ESP32"
       },
       {
-         "path": "protobuf"
+         "path": "server"
       },
       {
-         "path": "server"
+         "path": "client"
       },
       {
          "path": "."
       }
    ],
-   "settings": {},
+   "settings": {
+      "jest.disabledWorkspaceFolders": ["server", "ESP32", "protobuf", "led-ui"]
+   },
    "extensions": {},
    "tasks": {
       "version": "2.0.0",
