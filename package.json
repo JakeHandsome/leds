@@ -8,9 +8,12 @@
    "author": "",
    "license": "ISC",
    "private": true,
-   "workspaces": [
-      "client",
-      "protobuf",
-      "server"
-   ]
+   "devDependencies": {
+      "gulp": "^4.0.2",
+      "gulp-typescript": "^6.0.0-alpha.1",
+      "gulpclass": "^0.2.0"
+   },
+   "dependencies": {
+      "ts-node": "^9.1.1"
+   }
 }

@@ -6,8 +6,8 @@
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "prebuild": "npm run clean && pip install protobuf grpcio-tools",
-      "build": "protoc --plugin=protoc-gen-nanopb=.\\nanopb\\generator\\protoc-gen-nanopb.bat --nanopb_out=../ESP32/src/protobuf/ --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=../client/src/protobuf/ --ts_proto_out=../server/src/protobuf --ts_proto_opt=esModuleInterop=true  ./*.proto",
-      "clean": "rimraf ../ESP32/src/protobuf/* ../client/src/protobuf/*.ts ../server/src/protobuf/*.ts"
+      "build": "protoc --plugin=protoc-gen-nanopb=.\\nanopb\\generator\\protoc-gen-nanopb.bat --nanopb_out=../ESP32/src/protobuf/ --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=../client/src/protobuf/ --ts_proto_out=../server/src/protobuf/ --ts_proto_opt=esModuleInterop=true  ./*.proto",
+      "clean": "rimraf ../ESP32/src/protobuf/*{.c,.h} ../client/src/protobuf/*.ts ../server/src/protobuf/*.ts"
    },
    "keywords": [],
    "author": "",
