@@ -1,0 +1,6 @@
+{
+   "files.associations": {
+      "asynctcp.h": "c",
+      "functional": "cpp"
+   }
+}

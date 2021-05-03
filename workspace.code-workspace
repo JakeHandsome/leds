@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "client"
+		},
+		{
+			"path": "ESP32"
+		},
+		{
+			"path": "protobuf"
+		},
+		{
+			"path": "server"
+		}
+	],
+	"settings": {}
+}

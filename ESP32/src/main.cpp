@@ -6,6 +6,7 @@
 #include "screen.h"
 #include "nvm.h"
 #include "ota.h"
+#include "server.h"
 
 void Wifi_Init(void);
 NvmStructure_T *nvm;
@@ -16,6 +17,7 @@ void setup()
    Nvm_ReadAll();
    nvm = GetNvmStruct();
    Wifi_Init();
+   Server_Init();
    ArduinoOTA.setHostname(nvm->name);
    ArduinoOTA
        .onStart(OTA_OnStart)
@@ -23,6 +25,7 @@ void setup()
        .onError(OTA_OnError)
        .onEnd(OTA_OnEnd);
    ArduinoOTA.begin();
+
 }
 
 void loop()

@@ -1,7 +1,8 @@
 /* eslint-disable */
-import { Writer, Reader } from "protobufjs/minimal";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "led";
+export const protobufPackage = "";
 
 export interface Color {
   r: number;
@@ -12,7 +13,7 @@ export interface Color {
 const baseColor: object = { r: 0, g: 0, b: 0 };
 
 export const Color = {
-  encode(message: Color, writer: Writer = Writer.create()): Writer {
+  encode(message: Color, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.r !== 0) {
       writer.uint32(8).int32(message.r);
     }
@@ -25,8 +26,8 @@ export const Color = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Color {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+  decode(input: _m0.Reader | Uint8Array, length?: number): Color {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseColor } as Color;
     while (reader.pos < end) {
@@ -98,7 +99,14 @@ export const Color = {
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
   : T extends Array<infer U>
@@ -108,3 +116,8 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
+
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
+}
