@@ -2,8 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "NETServer.Protobuf";
 
-message Color {
-   int32 r = 1;
-   int32 g = 2;
-   int32 b = 3;
+message ESP32Init
+{
+   optional string name = 1;
 }
