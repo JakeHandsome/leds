@@ -19,7 +19,7 @@
    "settings": {
       "jest.disabledWorkspaceFolders": ["server", "ESP32", "protobuf", "led-ui"]
    },
-   "extensions": {},
+   "extensions": { "recommendations": ["EditorConfig.EditorConfig"] },
    "tasks": {
       "version": "2.0.0",
       "tasks": []
