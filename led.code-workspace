@@ -17,7 +17,15 @@
       }
    ],
    "settings": {
-      "jest.disabledWorkspaceFolders": ["server", "ESP32", "protobuf", "led-ui"]
+      "jest.disabledWorkspaceFolders": [
+         "server",
+         "ESP32",
+         "protobuf",
+         "led-ui"
+      ],
+      "files.associations": {
+         "array": "cpp"
+      }
    },
    "extensions": { "recommendations": ["EditorConfig.EditorConfig"] },
    "tasks": {

@@ -1,6 +1,6 @@
-#include <WiFi.h>
-#include "screen.h"
 #include "nvm.h"
+#include "screen.h"
+#include <WiFi.h>
 
 void Wifi_Init()
 {

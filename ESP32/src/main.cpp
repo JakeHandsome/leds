@@ -1,15 +1,15 @@
 #include <Arduino.h>
-#include <U8g2lib.h>
 #include <ArduinoOTA.h>
+#include <U8g2lib.h>
 
-#include "screen.h"
+#include "led/Effects/UnicornPoop.h"
+#include "led/LedManager.h"
+#include "my_wifi.h"
 #include "nvm.h"
 #include "ota.h"
+#include "screen.h"
 #include "server.h"
-#include "my_wifi.h"
-#include "led/led.h"
 
-void Wifi_Init(void);
 void setup()
 {
    pinMode(LED_BUILTIN, OUTPUT);
@@ -18,19 +18,22 @@ void setup()
    Wifi_Init();
    Server_Init();
    ArduinoOTA.setHostname(GetNvmStruct()->name);
-   ArduinoOTA
-       .onStart(OTA_OnStart)
-       .onProgress(OTA_OnProgress)
-       .onError(OTA_OnError)
-       .onEnd(OTA_OnEnd);
+   ArduinoOTA.onStart(OTA_OnStart).onProgress(OTA_OnProgress).onError(OTA_OnError).onEnd(OTA_OnEnd);
    ArduinoOTA.begin();
-   LED_Init();
 }
 
 void loop()
 {
-   ArduinoOTA.handle();
-   LED_Task();
-   // Blink LED to confirm we are alive
-   digitalWrite(LED_BUILTIN, ((millis() % 1000)>500));
+   LEDManager LEDManager(150, 4000);
+   UnicornPoop Effect1(70);
+   UnicornPoop Reversed(70, 80, true);
+   LEDManager.AddEffect(Effect1);
+   LEDManager.AddEffect(Reversed);
+   for (;;)
+   {
+      ArduinoOTA.handle();
+      LEDManager.PlayEffects();
+      // Blink LED to confirm we are alive
+      digitalWrite(LED_BUILTIN, ((millis() % 1000) > 500));
+   }
 }

@@ -1,12 +1,14 @@
 #include <Arduino.h>
-#include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <WiFi.h>
 #include <pb_encode.h>
 
-#include "protobuf/ESP32Init.pb.h"
+
 #include "nvm.h"
+#include "protobuf/ESP32Init.pb.h"
 #include "screen.h"
+
 
 #define APIHEADER(s) "/JakeHandsomeLEDApi" s
 
@@ -23,7 +25,7 @@ void Server_Init()
       strcpy(message.name, GetNvmStruct()->name);
       number++;
       pb_encode(&stream, ESP32Init_fields, &message);
-      request->send_P(200,"application/protobuf", (const uint8_t*)&buffer, stream.bytes_written);
+      request->send_P(200, "application/protobuf", (const uint8_t *)&buffer, stream.bytes_written);
    });
 
    server.begin();

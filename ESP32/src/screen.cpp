@@ -1,13 +1,14 @@
 
 
+#include "screen.h"
 #include <Arduino.h>
 #include <U8g2lib.h>
-#include "screen.h"
-
 
 #define base U8G2_SSD1306_128X64_NONAME_F_HW_I2C
 
-Screen::Screen() : base(U8G2_R2, RST_OLED, SCL_OLED, SDA_OLED) {}
+Screen::Screen() : base(U8G2_R2, RST_OLED, SCL_OLED, SDA_OLED)
+{
+}
 void Screen::begin()
 {
    base::begin();

@@ -2,5 +2,13 @@
    "files.associations": {
       "asynctcp.h": "c",
       "functional": "cpp"
+   },
+   "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/.pio/libdeps": true
    }
 }
