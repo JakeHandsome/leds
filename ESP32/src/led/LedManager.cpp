@@ -42,10 +42,7 @@ void LEDManager::Diagnostics(float StartTime) const
    float fps = CalculateFPS(millis() / 1000.f - StartTime);
 
    uint32_t PowerUsage = calculate_unscaled_power_mW(_LEDs, _NumberOfLEDs);
-   if (PowerUsage > _PowerLimit)
-   {
-      digitalWrite(BUILTIN_LED, 1);
-   }
+   digitalWrite(BUILTIN_LED, (PowerUsage > _PowerLimit));
    EVERY_N_MILLISECONDS(1000)
    {
       Screen::GetInstance().log.printf("PowerUsage:%d\nFPS:%.1lf\n", PowerUsage, fps);
@@ -55,4 +52,14 @@ void LEDManager::Diagnostics(float StartTime) const
 void LEDManager::AddEffect(Effect &Effect)
 {
    Effects.push_back(&Effect);
+}
+
+void LEDManager::ClearEffects(void)
+{
+   Effects.clear();
+}
+
+CRGB *LEDManager::GetLEDS(void)
+{
+   return _LEDs;
 }

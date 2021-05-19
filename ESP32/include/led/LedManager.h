@@ -22,4 +22,5 @@ class LEDManager
    void AddEffect(Effect &Effect);
    void RemoveEffect(Effect &Effect);
    void ClearEffects(void);
+   CRGB *GetLEDS(void);
 };

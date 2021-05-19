@@ -2,6 +2,7 @@
 #include <ArduinoOTA.h>
 #include <U8g2lib.h>
 
+#include "led/Effects/ReprogrammingStatus.h"
 #include "led/Effects/UnicornPoop.h"
 #include "led/LedManager.h"
 #include "my_wifi.h"
@@ -9,6 +10,8 @@
 #include "ota.h"
 #include "screen.h"
 #include "server.h"
+
+LEDManager *gLEDManager;
 
 void setup()
 {
@@ -24,16 +27,14 @@ void setup()
 
 void loop()
 {
-   LEDManager LEDManager(150, 4000);
+   gLEDManager = new LEDManager(150, 4000);
    UnicornPoop Effect1(70);
    UnicornPoop Reversed(70, 80, true);
-   LEDManager.AddEffect(Effect1);
-   LEDManager.AddEffect(Reversed);
+   gLEDManager->AddEffect(Effect1);
+   gLEDManager->AddEffect(Reversed);
    for (;;)
    {
       ArduinoOTA.handle();
-      LEDManager.PlayEffects();
-      // Blink LED to confirm we are alive
-      digitalWrite(LED_BUILTIN, ((millis() % 1000) > 500));
+      gLEDManager->PlayEffects();
    }
 }

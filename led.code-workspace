@@ -24,7 +24,9 @@
          "led-ui"
       ],
       "files.associations": {
-         "array": "cpp"
+         "array": "cpp",
+         "xlocbuf": "cpp",
+         "cmath": "cpp"
       }
    },
    "extensions": { "recommendations": ["EditorConfig.EditorConfig"] },
